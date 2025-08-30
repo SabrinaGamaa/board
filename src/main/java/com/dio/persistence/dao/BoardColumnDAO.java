@@ -20,6 +20,10 @@ public class BoardColumnDAO {
 
     private final Connection connection;
 
+    public BoardColumnDAO(Connection connection, Connection connection1) {
+        this.connection = connection1;
+    }
+
     public BoardColumnEntity insert(final BoardColumnEntity entity) throws SQLException {
         var sql = "INSERT INTO BOARDS_COLUMNS (name, `order`, kind, board_id) VALUES (?, ?, ?, ?);";
         try(var statement = connection.prepareStatement(sql)){

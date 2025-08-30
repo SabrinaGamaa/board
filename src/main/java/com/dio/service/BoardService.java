@@ -13,7 +13,11 @@ public class BoardService {
 
     private final Connection connection;
 
-    public BoardEntity insert(final BoardEntity entity) throws SQLException {
+    public BoardService(Connection connection) {
+        this.connection = connection1;
+    }
+
+    public void insert(final BoardEntity entity) throws SQLException {
         var dao = new BoardDAO(connection);
         var boardColumnDAO = new BoardColumnDAO(connection);
         try{
@@ -30,7 +34,6 @@ public class BoardService {
             connection.rollback();
             throw e;
         }
-        return entity;
     }
 
     public boolean delete(final Long id) throws SQLException {

@@ -13,7 +13,10 @@ public class BoardDAO {
 
     private Connection connection;
 
-    public BoardEntity insert(final BoardEntity entity) throws SQLException {
+    public BoardDAO(Connection connection) {
+    }
+
+    public void insert(final BoardEntity entity) throws SQLException {
         var sql = "INSERT INTO BOARDS (name) values (?);";
         try(var statement = connection.prepareStatement(sql)){
             statement.setString(1, entity.getName());
@@ -22,7 +25,6 @@ public class BoardDAO {
                 entity.setId(impl.getLastInsertID());
             }
         }
-        return entity;
     }
 
     public void delete(final Long id) throws SQLException {
